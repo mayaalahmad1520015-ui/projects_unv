@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رفع مشروع التخرج | Project Submission</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+      <path d="M2 17l10 5 10-5"/>
+      <path d="M2 12l10 5 10-5"/>
+    </svg>
+    <span data-ar="نظام رفع مشاريع الطلاب" data-en="Student Project Submission System"></span>
+  </div>
+  <div style="display:flex;gap:.75rem;align-items:center;">
+    <a href="dashboard.html" class="lang-btn" data-ar="لوحة التحكيم ←" data-en="← Committee Dashboard"></a>
+    <button class="lang-btn" id="langToggle">EN</button>
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="container">
+
+  <!-- Info card -->
+  <div class="card" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;">
+    <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:.5rem;">
+      <span data-ar="📋 نموذج رفع مشروع التخرج" data-en="📋 Graduation Project Submission Form"></span>
+    </h2>
+    <p style="opacity:.85;font-size:.95rem;" data-ar="يُرجى تعبئة جميع الحقول ورفع تقرير المشروع بصيغة PDF. سيتم مراجعة المشروع من قِبل لجنة التحكيم."
+       data-en="Please fill in all fields and upload your project report as a PDF. The project will be reviewed by the evaluation committee."></p>
+  </div>
+
+  <form id="submissionForm" novalidate>
+
+    <!-- Section 1: Student Info -->
+    <div class="card">
+      <h3 class="card-title">
+        <span>👤</span>
+        <span data-ar="معلومات الطالب" data-en="Student Information"></span>
+      </h3>
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="nameAr" data-ar="الاسم الكامل (عربي) *" data-en="Full Name (Arabic) *"></label>
+          <input type="text" id="nameAr" placeholder="محمد عبدالله الأحمد" required dir="rtl" />
+        </div>
+
+        <div class="form-group">
+          <label for="nameEn" data-ar="الاسم الكامل (إنجليزي) *" data-en="Full Name (English) *"></label>
+          <input type="text" id="nameEn" placeholder="Mohammed Abdullah Alahmad" required dir="ltr" />
+        </div>
+
+        <div class="form-group">
+          <label for="studentId" data-ar="الرقم الجامعي *" data-en="Student ID *"></label>
+          <input type="text" id="studentId" placeholder="4410012345" required dir="ltr" />
+        </div>
+
+        <div class="form-group">
+          <label for="email" data-ar="البريد الإلكتروني *" data-en="Email Address *"></label>
+          <input type="email" id="email" placeholder="student@university.edu.sa" required dir="ltr" />
+        </div>
+
+        <div class="form-group">
+          <label for="level" data-ar="المستوى الدراسي *" data-en="Academic Level *"></label>
+          <select id="level" required>
+            <option value="" data-ar="-- اختر المستوى --" data-en="-- Select Level --"></option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="department" data-ar="القسم / التخصص" data-en="Department / Major"></label>
+          <input type="text" id="department" data-ar-placeholder="هندسة الحاسب" data-en-placeholder="Computer Engineering" />
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 2: Project Info -->
+    <div class="card">
+      <h3 class="card-title">
+        <span>💡</span>
+        <span data-ar="معلومات المشروع" data-en="Project Information"></span>
+      </h3>
+      <div class="form-grid">
+
+        <div class="form-group full">
+          <label for="projectTitle" data-ar="عنوان المشروع *" data-en="Project Title *"></label>
+          <input type="text" id="projectTitle" data-ar-placeholder="نظام إدارة المستودعات بالذكاء الاصطناعي" data-en-placeholder="AI-powered Inventory Management System" required />
+        </div>
+
+        <div class="form-group full">
+          <label for="description" data-ar="وصف المشروع *" data-en="Project Description *"></label>
+          <textarea id="description" rows="4" data-ar-placeholder="اكتب وصفاً مختصراً للمشروع وأهدافه وما تم تحقيقه..." data-en-placeholder="Brief description of the project, its objectives, and what was achieved..." required></textarea>
+        </div>
+
+        <div class="form-group full">
+          <label for="githubLink" data-ar="رابط مستودع GitHub *" data-en="GitHub Repository Link *"></label>
+          <input type="url" id="githubLink" placeholder="https://github.com/username/project-repo" required dir="ltr" />
+        </div>
+
+        <div class="form-group">
+          <label for="demoLink" data-ar="رابط العرض التوضيحي (اختياري)" data-en="Demo / Video Link (optional)"></label>
+          <input type="url" id="demoLink" placeholder="https://youtube.com/watch?v=..." dir="ltr" />
+        </div>
+
+        <div class="form-group">
+          <label for="supervisor" data-ar="اسم المشرف (اختياري)" data-en="Supervisor Name (optional)"></label>
+          <input type="text" id="supervisor" data-ar-placeholder="د. أحمد محمد" data-en-placeholder="Dr. Ahmed Mohammed" />
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 3: PDF Upload -->
+    <div class="card">
+      <h3 class="card-title">
+        <span>📄</span>
+        <span data-ar="رفع التقرير (PDF) *" data-en="Upload Report (PDF) *"></span>
+      </h3>
+
+      <div class="drop-zone" id="dropZone">
+        <input type="file" id="pdfFile" accept=".pdf" required />
+        <div class="dz-icon">📂</div>
+        <div class="dz-text">
+          <strong data-ar="اسحب وأفلت ملف PDF هنا" data-en="Drag & drop your PDF here"></strong><br/>
+          <span data-ar="أو انقر للاختيار" data-en="or click to browse"></span>
+        </div>
+        <div class="dz-filename" id="fileName"></div>
+      </div>
+
+      <p style="font-size:.8rem;color:var(--text-muted);margin-top:.5rem;" data-ar="الحد الأقصى لحجم الملف: 25 ميغابايت | صيغة PDF فقط"
+         data-en="Maximum file size: 25 MB | PDF files only"></p>
+
+      <!-- Upload progress -->
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert" id="alertBox" role="alert">
+      <span id="alertIcon"></span>
+      <span id="alertMsg"></span>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary" id="submitBtn">
+      <div class="spinner" id="spinner"></div>
+      <span id="submitLabel" data-ar="🚀 إرسال المشروع" data-en="🚀 Submit Project"></span>
+    </button>
+
+  </form>
+
+</main>
+
+<footer class="site-footer">
+  <span data-ar="نظام رفع مشاريع الطلاب — مدعوم بـ GitHub" data-en="Student Project Submission System — Powered by GitHub"></span>
+</footer>
+
+<script src="config.js"></script>
+<script>
+/* ===================================================
+   Language system
+=================================================== */
+let currentLang = "ar";
+
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.getElementById("langToggle").textContent = lang === "ar" ? "EN" : "عر";
+
+  document.querySelectorAll("[data-ar]").forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+        el.placeholder = text;
+      } else if (el.tagName === "OPTION") {
+        el.textContent = text;
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+
+  // Placeholders stored separately for inputs
+  document.querySelectorAll("[data-ar-placeholder]").forEach(el => {
+    el.placeholder = el.getAttribute(`data-${lang}-placeholder`) || "";
+  });
+
+  // Populate level select
+  populateLevels();
+}
+
+document.getElementById("langToggle").addEventListener("click", () => {
+  applyLang(currentLang === "ar" ? "en" : "ar");
+});
+
+/* ===================================================
+   Populate levels dropdown
+=================================================== */
+function populateLevels() {
+  const sel = document.getElementById("level");
+  const current = sel.value;
+  sel.innerHTML = `<option value="">${currentLang === "ar" ? "-- اختر المستوى --" : "-- Select Level --"}</option>`;
+  CONFIG.LEVELS.forEach(l => {
+    const opt = document.createElement("option");
+    opt.value = l.value;
+    opt.textContent = currentLang === "ar" ? l.labelAr : l.labelEn;
+    if (l.value === current) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+/* ===================================================
+   Drop zone
+=================================================== */
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("pdfFile");
+const fileName  = document.getElementById("fileName");
+
+dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("dragover"); });
+dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  const f = e.dataTransfer.files[0];
+  if (f) setFile(f);
+});
+
+fileInput.addEventListener("change", () => {
+  if (fileInput.files[0]) setFile(fileInput.files[0]);
+});
+
+function setFile(f) {
+  if (f.type !== "application/pdf") {
+    showAlert("error", currentLang === "ar" ? "يرجى رفع ملف PDF فقط." : "Please upload a PDF file only.");
+    return;
+  }
+  if (f.size > 25 * 1024 * 1024) {
+    showAlert("error", currentLang === "ar" ? "حجم الملف يتجاوز 25 ميغابايت." : "File size exceeds 25 MB.");
+    return;
+  }
+  fileName.textContent = `📄 ${f.name} (${(f.size / 1024 / 1024).toFixed(2)} MB)`;
+}
+
+/* ===================================================
+   Alert helper
+=================================================== */
+function showAlert(type, msg) {
+  const box  = document.getElementById("alertBox");
+  const icon = document.getElementById("alertIcon");
+  const txt  = document.getElementById("alertMsg");
+  box.className = `alert visible alert-${type}`;
+  icon.textContent = type === "success" ? "✅" : "❌";
+  txt.textContent  = msg;
+  box.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/* ===================================================
+   GitHub API helpers
+=================================================== */
+const API = `https://api.github.com/repos/${CONFIG.OWNER}/${CONFIG.REPO}`;
+const HEADERS = {
+  "Authorization": `token ${CONFIG.GITHUB_TOKEN}`,
+  "Content-Type": "application/json",
+  "Accept": "application/vnd.github+json",
+};
+
+async function ensureLabelExists() {
+  const check = await fetch(`${API}/labels/project-submission`, { headers: HEADERS });
+  if (check.status === 200) return; // already exists
+  if (check.status === 404) {
+    const res = await fetch(`${API}/labels`, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify({ name: "project-submission", color: "0075ca", description: "Student project submission" }),
+    });
+    if (!res.ok && res.status !== 422) {
+      console.warn("Could not create label:", res.status);
+    }
+  }
+}
+
+async function uploadPDF(file, studentId) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async () => {
+      const base64 = reader.result.split(",")[1];
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = `${CONFIG.SUBMISSIONS_FOLDER}/${studentId}_${Date.now()}_${safeName}`;
+
+      // Animate progress
+      setProgress(30);
+
+      const res = await fetch(`${API}/contents/${path}`, {
+        method: "PUT",
+        headers: HEADERS,
+        body: JSON.stringify({
+          message: `Upload project report for student ${studentId}`,
+          content: base64,
+          branch: CONFIG.BRANCH,
+        }),
+      });
+
+      setProgress(60);
+
+      if (!res.ok) {
+        const err = await res.json();
+        reject(new Error(err.message || "Failed to upload PDF"));
+        return;
+      }
+
+      const data = await res.json();
+      resolve(data.content.download_url || data.content.html_url);
+    };
+    reader.onerror = () => reject(new Error("Failed to read file"));
+  });
+}
+
+async function createIssue(formData, pdfUrl) {
+  const levelLabel = CONFIG.LEVELS.find(l => l.value === formData.level);
+
+  const body = `
+## 🎓 بيانات الطالب | Student Information
+
+| الحقل / Field | القيمة / Value |
+|---|---|
+| **الاسم (عربي)** | ${formData.nameAr} |
+| **Full Name** | ${formData.nameEn} |
+| **الرقم الجامعي / Student ID** | \`${formData.studentId}\` |
+| **البريد الإلكتروني / Email** | ${formData.email} |
+| **المستوى / Level** | ${levelLabel ? `${levelLabel.labelAr} — ${levelLabel.labelEn}` : formData.level} |
+| **القسم / Department** | ${formData.department || "—"} |
+| **المشرف / Supervisor** | ${formData.supervisor || "—"} |
+
+---
+
+## 💡 معلومات المشروع | Project Information
+
+### عنوان المشروع | Project Title
+**${formData.projectTitle}**
+
+### الوصف | Description
+${formData.description}
+
+---
+
+## 🔗 الروابط | Links
+
+- 📄 **تقرير PDF / Report:** [تحميل التقرير / Download Report](${pdfUrl})
+- 💻 **GitHub Repository:** ${formData.githubLink}${formData.demoLink ? `\n- 🎥 **Demo / Video:** ${formData.demoLink}` : ""}
+
+---
+
+> 📅 تاريخ الإرسال / Submitted: ${new Date().toLocaleString("ar-SA")}
+> 🤖 تم الإرسال عبر نظام رفع المشاريع
+`;
+
+  const res = await fetch(`${API}/issues`, {
+    method: "POST",
+    headers: HEADERS,
+    body: JSON.stringify({
+      title: `[مشروع ${formData.studentId}] ${formData.projectTitle}`,
+      body: body.trim(),
+      labels: CONFIG.LABELS,
+    }),
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message || "Failed to create issue");
+  }
+
+  return await res.json();
+}
+
+/* ===================================================
+   Progress bar
+=================================================== */
+function setProgress(pct) {
+  const wrap = document.getElementById("progressWrap");
+  const bar  = document.getElementById("progressBar");
+  wrap.classList.add("visible");
+  bar.style.width = pct + "%";
+}
+
+/* ===================================================
+   Form submit
+=================================================== */
+document.getElementById("submissionForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Collect values
+  const formData = {
+    nameAr:       document.getElementById("nameAr").value.trim(),
+    nameEn:       document.getElementById("nameEn").value.trim(),
+    studentId:    document.getElementById("studentId").value.trim(),
+    email:        document.getElementById("email").value.trim(),
+    level:        document.getElementById("level").value,
+    department:   document.getElementById("department").value.trim(),
+    projectTitle: document.getElementById("projectTitle").value.trim(),
+    description:  document.getElementById("description").value.trim(),
+    githubLink:   document.getElementById("githubLink").value.trim(),
+    demoLink:     document.getElementById("demoLink").value.trim(),
+    supervisor:   document.getElementById("supervisor").value.trim(),
+  };
+
+  const pdfFile = document.getElementById("pdfFile").files[0];
+
+  // Basic validation
+  const required = ["nameAr","nameEn","studentId","email","level","projectTitle","description","githubLink"];
+  for (const key of required) {
+    if (!formData[key]) {
+      showAlert("error", currentLang === "ar"
+        ? "يرجى تعبئة جميع الحقول الإلزامية المميزة بـ *"
+        : "Please fill in all required fields marked with *");
+      return;
+    }
+  }
+
+  // Validate GitHub link format
+  if (!formData.githubLink.startsWith("https://github.com/")) {
+    showAlert("error", currentLang === "ar"
+      ? "رابط GitHub يجب أن يبدأ بـ https://github.com/"
+      : "GitHub link must start with https://github.com/");
+    return;
+  }
+
+  // Validate email format
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    showAlert("error", currentLang === "ar"
+      ? "يرجى إدخال بريد إلكتروني صحيح."
+      : "Please enter a valid email address.");
+    return;
+  }
+
+  if (!pdfFile) {
+    showAlert("error", currentLang === "ar"
+      ? "يرجى رفع ملف تقرير PDF."
+      : "Please upload your PDF report.");
+    return;
+  }
+
+  if (!CONFIG.GITHUB_TOKEN || CONFIG.GITHUB_TOKEN === "YOUR_GITHUB_TOKEN_HERE") {
+    showAlert("error", currentLang === "ar"
+      ? "⚙️ يرجى إعداد GitHub Token في ملف config.js أولاً."
+      : "⚙️ Please configure the GitHub Token in config.js first.");
+    return;
+  }
+
+  // UI — loading state
+  const btn    = document.getElementById("submitBtn");
+  const label  = document.getElementById("submitLabel");
+  const spinner = document.getElementById("spinner");
+  btn.disabled = true;
+  spinner.classList.add("visible");
+  label.textContent = currentLang === "ar" ? "جارٍ الإرسال..." : "Submitting...";
+  document.getElementById("alertBox").className = "alert";
+
+  try {
+    // 1. Ensure label exists
+    await ensureLabelExists().catch(err => console.warn("Label check:", err.message));
+    setProgress(15);
+
+    // 2. Upload PDF to repo
+    const pdfUrl = await uploadPDF(pdfFile, formData.studentId);
+    setProgress(70);
+
+    // 3. Create GitHub Issue
+    const issue = await createIssue(formData, pdfUrl);
+    setProgress(100);
+
+    // Success!
+    showAlert("success", currentLang === "ar"
+      ? `✅ تم إرسال مشروعك بنجاح! رقم الطلب: #${issue.number} — يمكنك متابعته عبر الرابط: ${issue.html_url}`
+      : `✅ Project submitted successfully! Issue #${issue.number} — Track it at: ${issue.html_url}`);
+
+    // Reset form
+    document.getElementById("submissionForm").reset();
+    document.getElementById("fileName").textContent = "";
+
+  } catch (err) {
+    let errMsg = err.message || "Unknown error";
+    if (errMsg.includes("Bad credentials") || errMsg.includes("401")) {
+      errMsg = currentLang === "ar"
+        ? "الـ GitHub Token غير صحيح أو منتهي الصلاحية — تحقق من config.js"
+        : "Invalid or expired GitHub Token — check config.js";
+    } else if (errMsg.includes("403") || errMsg.includes("Forbidden")) {
+      errMsg = currentLang === "ar"
+        ? "الـ Token لا يملك صلاحية الكتابة — تأكد من تفعيل Contents و Issues في الـ Token"
+        : "Token lacks write permission — enable Contents & Issues in Token settings";
+    } else if (errMsg.includes("404")) {
+      errMsg = currentLang === "ar"
+        ? "الـ Repository غير موجود أو الـ Token لا يملك وصولاً إليه — تحقق من OWNER و REPO في config.js"
+        : "Repository not found or Token has no access — check OWNER & REPO in config.js";
+    } else if (errMsg.includes("network") || errMsg.includes("fetch")) {
+      errMsg = currentLang === "ar"
+        ? "خطأ في الاتصال — تحقق من اتصالك بالإنترنت"
+        : "Connection error — check your internet connection";
+    }
+    showAlert("error", `${currentLang === "ar" ? "❌ خطأ: " : "❌ Error: "}${errMsg}`);
+    setProgress(0);
+    document.getElementById("progressWrap").classList.remove("visible");
+  } finally {
+    btn.disabled = false;
+    spinner.classList.remove("visible");
+    label.textContent = currentLang === "ar" ? "🚀 إرسال المشروع" : "🚀 Submit Project";
+  }
+});
+
+/* ===== Init ===== */
+applyLang("ar");
+</script>
+</body>
+</html>
