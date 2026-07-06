@@ -2,7 +2,7 @@
 const CONFIG = {
   // GitHub personal access token (fine-grained: Issues: Read & Write, Contents: Read & Write)
   // Generate at: https://github.com/settings/tokens
-  GITHUB_TOKEN: "github_pat_11CDWYI7Q0u5hgLnFDO9uC_seGJPqoTLJ7qrLLM6NFpxUcs4MZFn7Om3E6qGiauCaASXOYXVVTJy4T",
+  GITHUB_TOKEN: "YOUR_GITHUB_TOKEN_HERE",
 
   // Your GitHub username or organization
   OWNER: "mayaalahmad1520015-ui",
